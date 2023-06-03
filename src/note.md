@@ -1,0 +1,6 @@
+- Choose a shop to deliver from!
+- ask to increase amount
+- add navigate-home-page
+- add Cart-status
+- shop-loader on all the page
+- async=>sync action

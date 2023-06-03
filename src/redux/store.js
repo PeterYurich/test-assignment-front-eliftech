@@ -11,18 +11,20 @@ import {
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { repoSlice } from 'redux/repo/repoSlice';
+import { shopsSlice } from './shops/shopsSlice';
+import { goodsSlice } from './goods/goodsSlice';
+import { cartSlice } from './cart/cartSlice';
 
-
-const repoPersistConfig = {
-  key: 'repo',
+const cartPersistConfig = {
+  key: 'cart',
   storage,
 };
 
 export const store = configureStore({
   reducer: {
-    repo: persistReducer(repoPersistConfig, repoSlice.reducer),
-    // repo: repoSlice.reducer,
+    cart: persistReducer(cartPersistConfig, cartSlice.reducer),
+    shops: shopsSlice.reducer,
+    goods: goodsSlice.reducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

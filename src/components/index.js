@@ -1,7 +1,17 @@
-import Search from "./Search/Search";
-import { Loader } from "./Loader/Loader";
+import { LoaderInfinity, LoaderBallTriangle } from "./Loader/Loader";
+import Header from "./Header/Header";
+import SharedLayout from "./SharedLayout/SharedLayout";
+import ShopsList from "./ShopsList/ShopsList";
+import GoodsList from "./GoodsList/GoodsList";
+import Cart from "./Cart/Cart";
 
 export {
-    Search,
-    Loader,
+    LoaderInfinity,
+    LoaderBallTriangle,
+    Header,
+    SharedLayout,
+    ShopsList,
+    GoodsList,
+    Cart,
+    
 }

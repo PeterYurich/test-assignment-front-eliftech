@@ -1,15 +1,16 @@
-const palette = {
+export const palette = {
     type: 'light',
     primary: {
-        main: '#432263',
+        main: '#204000',
+        light: '#499300'
     },
     secondary: {
         main: '#FFFFFF',
         contrastText: '#000000',
     },
     background: {
-        default: '#f6f5f7',
-        paper: '#FFFFFF',
+        default: '#f2fbff',
+        paper: '#f2fbff',
     },
     warning: {
         main: '#ff1800',
@@ -41,6 +42,9 @@ export const ThemeOptions = {
             marginBottom: 15,
         },
 
+        h2: {
+
+        },
         h5: {
             fontSize: 20,
             fontWeight: 700,
@@ -54,13 +58,13 @@ export const ThemeOptions = {
             textTransform: 'capitalize',
             margin: 4,
             hover: {
-                backgroundColor: palette.primary.main,
-                color: palette.secondary.main,
+                backgroundColor: palette.primary.light,
+                color: palette.secondary.light,
             },
         },
     },
     shape: {
-        borderRadius: 3,
+        borderRadius: 14,
     },
     
     components: {
@@ -69,14 +73,28 @@ export const ThemeOptions = {
                 {
                     props: { variant: 'outlined' },
                     style: {
-                        height: 50,
+                        // height: 50,
                         border: `2px solid ${palette.primary.main}`,
                         backgroundColor: palette.background.paper,
                         color: palette.text.primary,
                         '&:hover': {
-                            backgroundColor: palette.primary.main,
-                            border: `2px solid ${palette.primary.main}`,
+                            backgroundColor: palette.primary.light,
+                            border: `2px solid ${palette.primary.light}`,
                             color: palette.text.contrast,
+                        },
+                    },
+                },
+                {
+                    props: { variant: 'contained' },
+                    style: {
+                        // height: 50,
+                        // border: `2px solid ${palette.primary.main}`,
+                        backgroundColor: palette.primary.light,
+                        color: palette.text.contrast,
+                        '&:hover': {
+                            backgroundColor: palette.secondary.main,
+                            // border: `2px solid ${palette.primary.light}`,
+                            color: palette.text.main,
                         },
                     },
                 },

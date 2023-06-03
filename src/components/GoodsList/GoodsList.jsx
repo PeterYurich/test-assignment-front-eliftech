@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Grid,
   List,
   ListItem,
   Typography,
@@ -33,17 +34,28 @@ export default function GoodsList() {
   const handleAddToCart = (good) => {
     const addedGood = cart.find((item) => item._id === good._id);
     if (addedGood) {
-      toast.info(`You've already added ${good.productName} in your cart. Thank you for you choice!`, {
-      });
+      toast.info(
+        `You've already added ${good.productName} in your cart. Thank you for you choice!`,
+        {}
+      );
       return;
     }
     dispatch(addGoodToCart({ ...good, amount: 1 }));
-    toast.success(`Chosen ${good.productName} is successfully added to the cart!`);
+    toast.success(
+      `Chosen ${good.productName} is successfully added to the cart!`
+    );
   };
 
   return (
     <Box sx={css.mainBox}>
-      <List sx={css.goodListBox}>
+      {/* <List sx={css.goodListBox}> */}
+      <Grid
+        container
+        spacing={4}
+        sx={{
+          pb: 6,
+        }}
+      >
         {goodsList.length === 0 && (
           <Typography>Choose a shop to deliver from!</Typography>
         )}
@@ -52,8 +64,19 @@ export default function GoodsList() {
         ) : (
           goodsList.length > 0 &&
           goodsList.map((good) => (
-            <ListItem key={good._id}>
-              <Card sx={{ maxWidth: 345 }}>
+            // <ListItem key={good._id} sx={css.goodCard}>
+            <Grid
+              item
+              justifyContent="center"
+              display="flex"
+              xs={12}
+              sm={12}
+              md={3}
+              lg={2}
+              xl={2}
+              key={good._id}
+            >
+              <Card sx={{ maxWidth: 200 }}>
                 <CardMedia
                   sx={{ height: 140 }}
                   image={good.pictureUrl}
@@ -83,22 +106,25 @@ export default function GoodsList() {
                   </Button>
                 </CardActions>
               </Card>
-            </ListItem>
+            </Grid>
+            // </ListItem>
           ))
         )}
-      </List>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+      </Grid>
+
+      {/* </List> */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Box>
   );
 }

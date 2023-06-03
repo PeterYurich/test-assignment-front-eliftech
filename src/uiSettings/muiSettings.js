@@ -66,7 +66,7 @@ export const ThemeOptions = {
     shape: {
         borderRadius: 14,
     },
-    
+
     components: {
         MuiButton: {
             variants: [
@@ -95,6 +95,16 @@ export const ThemeOptions = {
                     },
                 },
             ],
+        },
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 319.98,
+            md: 767.98,
+            lg: 1279.98,
+            xl: 1535.98,
+            modal: 608,
         },
     },
 };

@@ -14,6 +14,6 @@ export const css = {
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        position: 'sticky',
+        // position: ,
     }
 }

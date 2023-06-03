@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(addOrder.fulfilled, (state, { payload }) => {
-                console.log('payload: ', payload);
+                state.items = []
                 state.isLoading = false;
                 state.error = null;
             })

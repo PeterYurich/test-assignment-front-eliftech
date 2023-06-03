@@ -1,11 +1,12 @@
 import * as yup from "yup";
-import { Box, Button, Input } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { LoaderInfinity } from "components";
 import { Formik, Form, ErrorMessage, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart, selectIsLoadingCart } from "redux/cart/cartSelectors";
 import { css } from "./cssOrderForm";
 import { addOrder } from "redux/cart/cartOperations";
+import { StyledInput } from "./OrderForm.styled";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -55,7 +56,7 @@ export default function LoginForm() {
       <Form>
         <Box sx={css.formBox}>
           <Box sx={{ position: "relative" }}>
-            <Input
+            <StyledInput
               type="name"
               name="name"
               placeholder={"Enter name"}
@@ -66,7 +67,7 @@ export default function LoginForm() {
             </ErrorMessage>
           </Box>
           <Box sx={{ position: "relative" }}>
-            <Input
+            <StyledInput
               type="email"
               name="email"
               placeholder={"Enter email"}
@@ -77,7 +78,7 @@ export default function LoginForm() {
             </ErrorMessage>
           </Box>
           <Box sx={{ position: "relative" }}>
-            <Input
+            <StyledInput
               type="phone"
               name="phone"
               placeholder={"Enter your phone"}
@@ -88,7 +89,7 @@ export default function LoginForm() {
             </ErrorMessage>
           </Box>
           <Box sx={{ position: "relative" }}>
-            <Input
+            <StyledInput
               type="address"
               name="address"
               placeholder={"Enter your address"}
@@ -99,7 +100,7 @@ export default function LoginForm() {
             </ErrorMessage>
           </Box>
           <Button variant="contained" type="submit">
-            {!isLoading ? "submit" : <LoaderInfinity h="30" w="55" />}
+            {!isLoading ? "order" : <LoaderInfinity h="30" w="55" />}
           </Button>
         </Box>
       </Form>

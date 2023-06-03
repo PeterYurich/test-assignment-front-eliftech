@@ -73,7 +73,6 @@ export const ThemeOptions = {
                 {
                     props: { variant: 'outlined' },
                     style: {
-                        // height: 50,
                         border: `2px solid ${palette.primary.main}`,
                         backgroundColor: palette.background.paper,
                         color: palette.text.primary,
@@ -87,13 +86,10 @@ export const ThemeOptions = {
                 {
                     props: { variant: 'contained' },
                     style: {
-                        // height: 50,
-                        // border: `2px solid ${palette.primary.main}`,
                         backgroundColor: palette.primary.light,
                         color: palette.text.contrast,
                         '&:hover': {
                             backgroundColor: palette.secondary.main,
-                            // border: `2px solid ${palette.primary.light}`,
                             color: palette.primary.main,
                         },
                     },

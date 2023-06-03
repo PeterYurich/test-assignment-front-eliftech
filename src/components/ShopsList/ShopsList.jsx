@@ -14,6 +14,7 @@ import { getGoods } from "redux/goods/goodsOperations";
 export default function ShopsList() {
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(getShops());
   }, [dispatch]);

@@ -1,12 +1,10 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { css } from "./cssHeader";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { currentShop } = useParams();
-  console.log('currentShop: ', currentShop);
 
   const onClick = (e) => {
     const { name } = e.target;

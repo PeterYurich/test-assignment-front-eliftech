@@ -7,6 +7,8 @@ import { palette } from 'uiSettings/muiSettings';
 
 const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage'))
 const CartPage = lazy(() => import('./pages/CartPage/CartPage'))
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 
 function App() {
   return (
@@ -15,9 +17,10 @@ function App() {
         <Container sx={{backgroundColor: palette.background.default, height: "100vh"}}>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
-              <Route path="shop/:currentShop" element={<ShopPage />} />
+              <Route index element={<HomePage />} />
+              <Route path="shop" element={<ShopPage />} />
               <Route path="cart" element={<CartPage />} />
-              {/* <Route path="*" element={<NotFoundPage />} /> */}
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </Container>

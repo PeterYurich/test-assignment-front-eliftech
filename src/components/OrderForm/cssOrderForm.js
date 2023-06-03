@@ -13,6 +13,7 @@ export const css = {
     formBox: {
         display: 'flex',
         flexDirection: 'column',
-        gap: 2
+        gap: 2,
+        position: 'sticky',
     }
 }

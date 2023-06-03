@@ -1,6 +1,5 @@
 - pictures
-- ask to increase amount
-- add navigate-home-page
+- style cart
+
 - add Cart-status
 - shop-loader on all the page
-- async=>sync action

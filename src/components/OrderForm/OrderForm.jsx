@@ -1,82 +1,108 @@
-import * as yup from 'yup';
-import {Box, Button} from '@mui/material';
-import { LoaderInfinity } from 'components';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { addOrder } from 'api/orderApi copy';
-import { selectCart } from 'redux/cart/cartSelectors';
-import { css } from './cssOrderForm';
+import * as yup from "yup";
+import { Box, Button, Input } from "@mui/material";
+import { LoaderInfinity } from "components";
+import { Formik, Form, ErrorMessage, useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCart, selectIsLoadingCart } from "redux/cart/cartSelectors";
+import { css } from "./cssOrderForm";
+import { addOrder } from "redux/cart/cartOperations";
 
-const schema = yup.object().shape({
-    email: yup
-      .string()
-      .min(8)
-      .max(63)
-      .matches(
-        /^[^-n]+[a-zA-Z0-9.,!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9]+)*$/,
-        'Email must not contain the "-" as a first or last character'
-      )
-      .email()
-      .required(),
-    password: yup
-      .string()
-      .min(7)
-      .max(32)
-      .matches(
-        /^[a-zA-Z0-9]*$/,
-        'Password must contain only latin letters and/or numbers'
-      )
-      .required(),
+const validationSchema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup
+    .string()
+    .min(8)
+    .max(63)
+    .matches(
+      /^[^-n]+[a-zA-Z0-9.,!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9]+)*$/,
+      'Email must not contain the "-" as a first or last character'
+    )
+    .email()
+    .required(),
+  phone: yup
+    .string()
+    .min(10)
+    .max(13, 'Phone must be at most 13 characters, in format "+380000000000"')
+    .matches(/^[+][3][8][0]+[0-9]*$/, 'Phone must be in format "+380000000000"')
+    .required(),
+  address: yup.string().required(),
+});
+
+export default function LoginForm() {
+  const dispatch = useDispatch();
+  const cart = useSelector(selectCart);
+  const isLoading = useSelector(selectIsLoadingCart);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+    },
+    validationSchema,
   });
-  
-  const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
+
+  const onSubmit = (values) => {
+    dispatch(addOrder({ ...values, order: cart }));
   };
-  
-export default function LoginForm () {
-    const dispatch = useDispatch();
-    const isLoading = useSelector(selectCart) // ***********
-    const cart = useSelector(selectCart)
-  
-    const handleSubmit = values => {
-    //   const { name, email, phone, address } = values;
-      dispatch(addOrder({...values, order: cart}));
-    };
-  
-    return (
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <Box sx={{ position: 'relative' }}>
-            <Field
-              type="email" name="email"
+  return (
+    <Formik
+      initialValues={formik.initialValues}
+      validationSchema={formik.validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <Box sx={css.formBox}>
+          <Box sx={{ position: "relative" }}>
+            <Input
+              type="name"
+              name="name"
+              placeholder={"Enter name"}
+              disableunderline="true"
+            />
+            <ErrorMessage name="name">
+              {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
+            </ErrorMessage>
+          </Box>
+          <Box sx={{ position: "relative" }}>
+            <Input
+              type="email"
+              name="email"
               placeholder={"Enter email"}
               disableunderline="true"
             />
             <ErrorMessage name="email">
-              {msg => <Box sx={css.errorText}>*{msg}</Box>}
+              {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
             </ErrorMessage>
           </Box>
-          <Box sx={{ position: 'relative' }}>
-            <Field
-              type="phone" name="phone"
-              placeholder={'Enter your phone'}
+          <Box sx={{ position: "relative" }}>
+            <Input
+              type="phone"
+              name="phone"
+              placeholder={"Enter your phone"}
               disableunderline="true"
             />
-            <ErrorMessage name="password">
-              {msg => <Box sx={css.ErrorText}>*{msg}</Box>}
+            <ErrorMessage name="phone">
+              {(msg) => <Box sx={css.ErrorText}>*{msg}</Box>}
+            </ErrorMessage>
+          </Box>
+          <Box sx={{ position: "relative" }}>
+            <Input
+              type="address"
+              name="address"
+              placeholder={"Enter your address"}
+              disableunderline="true"
+            />
+            <ErrorMessage name="address">
+              {(msg) => <Box sx={css.ErrorText}>*{msg}</Box>}
             </ErrorMessage>
           </Box>
           <Button variant="contained" type="submit">
-            {!isLoading ? 'submit' : <LoaderInfinity />}
+            {!isLoading ? "submit" : <LoaderInfinity h="30" w="55" />}
           </Button>
-        </Form>
-      </Formik>
-    );
-  };
+        </Box>
+      </Form>
+    </Formik>
+  );
+}

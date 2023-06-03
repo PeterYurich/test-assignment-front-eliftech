@@ -30,7 +30,7 @@ export const palette = {
 export const ThemeOptions = {
     palette,
     typography: {
-        fontFamily: 'Chivo Mono',
+        fontFamily: 'Nunito',
         fontSize: 16,
         body1: {
             fontWeight: 300,
@@ -94,7 +94,7 @@ export const ThemeOptions = {
                         '&:hover': {
                             backgroundColor: palette.secondary.main,
                             // border: `2px solid ${palette.primary.light}`,
-                            color: palette.text.main,
+                            color: palette.primary.main,
                         },
                     },
                 },

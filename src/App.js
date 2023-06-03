@@ -15,7 +15,7 @@ function App() {
         <Container sx={{backgroundColor: palette.background.default, height: "100vh"}}>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
-              <Route path="shop" element={<ShopPage />} />
+              <Route path="shop/:currentShop" element={<ShopPage />} />
               <Route path="cart" element={<CartPage />} />
               {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Route>

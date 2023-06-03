@@ -11,16 +11,6 @@ export const css = {
         pb: 2,
         flexWrap: 'wrap',
     },
-
-    navLink: {
-        color: palette.secondary.main,
-        "&:hover": {
-            backgroundColor: palette.secondary.main,
-            color: palette.primary.main
-        },
-        textDecoration: 'none',
-    },
-
     slogan: {
         color: palette.primary.main
     }

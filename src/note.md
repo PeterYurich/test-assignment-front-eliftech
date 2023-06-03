@@ -1,4 +1,4 @@
-- Choose a shop to deliver from!
+- pictures
 - ask to increase amount
 - add navigate-home-page
 - add Cart-status

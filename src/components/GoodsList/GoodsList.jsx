@@ -16,8 +16,6 @@ import {
 } from "redux/goods/goodsSelectors";
 import { LoaderBallTriangle } from "components";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-// import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-// import { addGoodToCart } from "redux/cart/cartOperations";
 
 import { selectCart } from "redux/cart/cartSelectors";
 import { Notify } from "notiflix";
@@ -43,6 +41,9 @@ export default function GoodsList() {
 
   return (
     <List sx={css.goodListBox}>
+      {goodsList.length === 0 && (
+        <Typography>Choose a shop to deliver from!</Typography>
+      )}
       {isLoading ? (
         <LoaderBallTriangle />
       ) : (
@@ -77,10 +78,6 @@ export default function GoodsList() {
                   <AddShoppingCartIcon />
                   Add to cart
                 </Button>
-                {/* <Button variant="text" size="small">
-                  <RemoveShoppingCartIcon />
-                  Delete from cart
-                </Button> */}
               </CardActions>
             </Card>
           </ListItem>

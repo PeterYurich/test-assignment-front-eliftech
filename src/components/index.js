@@ -4,6 +4,7 @@ import SharedLayout from "./SharedLayout/SharedLayout";
 import ShopsList from "./ShopsList/ShopsList";
 import GoodsList from "./GoodsList/GoodsList";
 import Cart from "./Cart/Cart";
+import OrderForm from "./OrderForm/OrderForm"
 
 export {
     LoaderInfinity,
@@ -13,5 +14,6 @@ export {
     ShopsList,
     GoodsList,
     Cart,
+    OrderForm,
     
 }

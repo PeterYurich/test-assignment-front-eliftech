@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { saveOrder } from 'api/orderApi';
 
 
 export const addOrder = createAsyncThunk("cart/addGood",
-    async (good, { rejectWithValue }) => {
+    async (credential, { rejectWithValue }) => {
         try {
-            const response = good
+            const response = await saveOrder(credential)
             return response
         } catch (error) {
             return rejectWithValue(error.message)

@@ -1,13 +1,13 @@
 import { InfinitySpin, BallTriangle } from 'react-loader-spinner';
 import { useTheme } from '@emotion/react';
 
-export const LoaderInfinity = () => {
+export const LoaderInfinity = ({h, w}) => {
     const { palette } = useTheme()
 
     return (
             <InfinitySpin 
-                height="60"
-                width="120"
+                height={h}
+                width={w}
                 color={palette.primary.main}
                 visible={true}
             />

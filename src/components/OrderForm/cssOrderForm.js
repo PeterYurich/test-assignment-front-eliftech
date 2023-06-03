@@ -9,5 +9,10 @@ export const css = {
         padding: '5px 20px',
         color: palette.warning.main,
         zIndex: '5',
+    },
+    formBox: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2
     }
 }

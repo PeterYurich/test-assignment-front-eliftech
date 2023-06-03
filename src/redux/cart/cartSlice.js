@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addOrder } from './cartOperations';
 
 const initialState = {
     items: [],
@@ -21,21 +22,21 @@ export const cartSlice = createSlice({
             state.items[index].amount = payload.newAmount
         }
     },
-    // extraReducers: builder => {
-    //     builder
-    //         .addOrder(addGoodToCart.pending, state => {
-    //             state.isLoading = true;
-    //         })
-    //         .addCase(addGoodToCart.fulfilled, (state, { payload }) => {
-    //             state.isLoading = false;
-    //             state.items.push(payload);
-    //             console.log('state.items: ', state.items);
-    //         })
-    //         .addCase(addGoodToCart.rejected, (state, { payload }) => {
-    //             state.isLoading = false;
-    //             state.error = payload;
-    //         })
-    // },
+    extraReducers: builder => {
+        builder
+            .addCase(addOrder.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(addOrder.fulfilled, (state, { payload }) => {
+                console.log('payload: ', payload);
+                state.isLoading = false;
+                state.error = null;
+            })
+            .addCase(addOrder.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+    },
 });
 
 export const { addGoodToCart, delGoodFromCart, updateAmount } = cartSlice.actions

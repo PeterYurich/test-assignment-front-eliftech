@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Button, List, ListItem, Typography } from "@mui/material";
 import { LoaderBallTriangle } from "components";
 import React, { useEffect } from "react";
 
@@ -26,21 +26,22 @@ export default function ShopsList() {
   };
 
   return (
-    <Box sx={css.shopListBox}>
+    <List sx={css.shopListBox}>
       {isLoading ? (
         <LoaderBallTriangle />
       ) : (
         shopsList.length > 0 && shopsList.map((shop) => (
-          <Button
-            sx={css.shopBtn}
-            variant="outlined"
-            key={shop._id}
-            onClick={() => handleClick(shop._id)}
-          >
-            <Typography>{`${shop.shopName}`}</Typography>
-          </Button>
+          <ListItem key={shop._id}>
+            <Button
+              sx={css.shopBtn}
+              variant="outlined"
+              onClick={() => handleClick(shop._id)}
+            >
+              <Typography>{`${shop.shopName}`}</Typography>
+            </Button>
+          </ListItem>
         ))
       )}
-    </Box>
+    </List>
   );
 }

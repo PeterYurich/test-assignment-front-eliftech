@@ -3,6 +3,7 @@ import { addOrder } from './cartOperations';
 
 const initialState = {
     items: [],
+    shopForOrder: "",
     isLoading: false,
     error: null
 }
@@ -12,7 +13,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addGoodToCart(state, { payload }) {
-            state.items.push(payload);
+            state.items.push(payload)
         },
         delGoodFromCart(state, { payload }) {
             state.items = state.items.filter(item => item._id !== payload);
@@ -20,6 +21,12 @@ export const cartSlice = createSlice({
         updateAmount(state, { payload }) {
             const index = state.items.findIndex(item => item._id === payload.id)
             state.items[index].amount = payload.newAmount
+        },
+        addShopForOrder(state, { payload }) {
+            state.shopForOrder = payload;
+        },
+        delShopForOrder(state) {
+            state.shopForOrder = "";
         }
     },
     extraReducers: builder => {
@@ -39,4 +46,5 @@ export const cartSlice = createSlice({
     },
 });
 
-export const { addGoodToCart, delGoodFromCart, updateAmount } = cartSlice.actions
+export const { addGoodToCart, delGoodFromCart, updateAmount,
+    addShopForOrder, delShopForOrder } = cartSlice.actions

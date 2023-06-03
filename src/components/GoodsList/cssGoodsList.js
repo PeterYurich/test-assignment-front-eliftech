@@ -1,26 +1,15 @@
-import { palette } from "uiSettings/muiSettings";
-
 export const css = {
     mainBox: {
         display: 'flex',
         flexGrow: 1,
         maxHeight: "100vh",
     },
-    goodListBox: {
-        flexGrow: 1,
-        border: `2px solid ${palette.primary.main}`,
-        borderRadius: 1,
-        padding: 1,
-        
+    flexCenter: {
+        width: "100%",
+        height: "100%",
         display: 'flex',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        gap: 2,
-        // flexWrap: 'wrap',
-    },
-    goodCard: {
-        width: 180,
-        height: 290,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     goodName: {
         textTransform: "capitalize"

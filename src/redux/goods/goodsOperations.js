@@ -6,7 +6,7 @@ export const getGoods = createAsyncThunk("goods/getGoods",
     async (shopId, { rejectWithValue }) => {
         try {
             const response = await fetchGoods(shopId)
-            return response.products
+            return response
         } catch (error) {
             return rejectWithValue(error.message)
         }

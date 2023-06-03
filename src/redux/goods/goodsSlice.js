@@ -3,6 +3,7 @@ import { getGoods } from './goodsOperations';
 
 const initialState = {
     items: [],
+    currentShop: "",
     isLoading: false,
     error: null
 }
@@ -18,7 +19,8 @@ export const goodsSlice = createSlice({
             })
             .addCase(getGoods.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.items = payload
+                state.items = payload.products
+                state.currentShop = payload._id
             })
             .addCase(getGoods.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -26,3 +28,5 @@ export const goodsSlice = createSlice({
             })
     },
 });
+
+export const clearCurrentShop = goodsSlice.actions

@@ -10,10 +10,14 @@ import {
 } from "redux/shops/shopsSelectors";
 import { css } from "./cssShopList";
 import { getGoods } from "redux/goods/goodsOperations";
+import { selectCurrentShop } from "redux/goods/goodsSelectors";
+import { selectShopForOrder } from "redux/cart/cartSelectors";
 
 export default function ShopsList() {
   const dispatch = useDispatch();
-
+  const currentShop = useSelector(selectCurrentShop)
+  const shopForOrder = useSelector(selectShopForOrder)
+  console.log('shopForOrder: ', shopForOrder);
 
   useEffect(() => {
     dispatch(getShops());
@@ -35,7 +39,8 @@ export default function ShopsList() {
           <ListItem key={shop._id}>
             <Button
               sx={css.shopBtn}
-              variant="outlined"
+              variant={currentShop === shop._id ? "contained" : "outlined"}
+              disabled={shopForOrder !== shop._id && shopForOrder !== "" && true}
               onClick={() => handleClick(shop._id)}
             >
               <Typography>{`${shop.shopName}`}</Typography>

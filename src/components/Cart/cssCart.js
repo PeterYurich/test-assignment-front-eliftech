@@ -7,5 +7,12 @@ export const css = {
         display: "flex",
         mb: 2,
         justifyContent: 'space-between',
-    }
+    },
+    flexCenter:  {
+        width: "100%",
+        height: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 }

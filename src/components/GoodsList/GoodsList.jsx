@@ -6,14 +6,13 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  List,
-  ListItem,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { css } from "./cssGoodsList";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  selectCurrentShop,
   selectGoodsList,
   selectIsLoadingGoods,
 } from "redux/goods/goodsSelectors";
@@ -23,13 +22,25 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { selectCart } from "redux/cart/cartSelectors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { addGoodToCart } from "redux/cart/cartSlice";
+import {
+  addGoodToCart,
+  addShopForOrder,
+  delShopForOrder,
+} from "redux/cart/cartSlice";
+import separateThousands from "utils/separateThousands";
 
 export default function GoodsList() {
   const isLoading = useSelector(selectIsLoadingGoods);
   const goodsList = useSelector(selectGoodsList);
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
+  const currentShop = useSelector(selectCurrentShop);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      dispatch(delShopForOrder());
+    }
+  }, [cart, dispatch]);
 
   const handleAddToCart = (good) => {
     const addedGood = cart.find((item) => item._id === good._id);
@@ -41,6 +52,8 @@ export default function GoodsList() {
       return;
     }
     dispatch(addGoodToCart({ ...good, amount: 1 }));
+    dispatch(addShopForOrder(currentShop));
+
     toast.success(
       `Chosen ${good.productName} is successfully added to the cart!`
     );
@@ -48,8 +61,8 @@ export default function GoodsList() {
 
   return (
     <Box sx={css.mainBox}>
-      {/* <List sx={css.goodListBox}> */}
       <Grid
+        component="ul"
         container
         spacing={4}
         sx={{
@@ -57,15 +70,19 @@ export default function GoodsList() {
         }}
       >
         {goodsList.length === 0 && (
-          <Typography>Choose a shop to deliver from!</Typography>
+          <Box sx={css.flexCenter}>
+            <Typography>Choose a shop to deliver from!</Typography>
+          </Box>
         )}
         {isLoading ? (
-          <LoaderBallTriangle />
+          <Box sx={css.flexCenter}>
+            <LoaderBallTriangle />
+          </Box>
         ) : (
           goodsList.length > 0 &&
           goodsList.map((good) => (
-            // <ListItem key={good._id} sx={css.goodCard}>
             <Grid
+              component="li"
               item
               justifyContent="center"
               display="flex"
@@ -92,7 +109,7 @@ export default function GoodsList() {
                     {`${good.productName}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${good.price} coins`}
+                    {`${separateThousands(good.price)} coins`}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -107,12 +124,10 @@ export default function GoodsList() {
                 </CardActions>
               </Card>
             </Grid>
-            // </ListItem>
           ))
         )}
       </Grid>
 
-      {/* </List> */}
       <ToastContainer
         position="bottom-right"
         autoClose={4000}

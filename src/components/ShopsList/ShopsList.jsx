@@ -17,7 +17,6 @@ export default function ShopsList() {
   const dispatch = useDispatch();
   const currentShop = useSelector(selectCurrentShop)
   const shopForOrder = useSelector(selectShopForOrder)
-  console.log('shopForOrder: ', shopForOrder);
 
   useEffect(() => {
     dispatch(getShops());

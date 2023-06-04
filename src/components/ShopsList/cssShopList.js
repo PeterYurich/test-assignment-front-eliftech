@@ -3,6 +3,7 @@ export const css = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        minHeight: 200
     },
 
     shopBtn: {

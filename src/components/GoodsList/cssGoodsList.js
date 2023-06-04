@@ -9,7 +9,8 @@ export const css = {
         height: "100%",
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        minHeight: 300,
     },
     goodName: {
         textTransform: "capitalize"

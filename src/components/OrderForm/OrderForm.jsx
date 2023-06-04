@@ -22,12 +22,7 @@ const validationSchema = yup.object().shape({
     )
     .email()
     .required(),
-  phone: yup
-    .string()
-    .min(10)
-    .max(13, 'Phone must be at most 13 characters, in format "+380000000000"')
-    .matches(/^[+][3][8][0]+[0-9]*$/, 'Phone must be in format "+380000000000"')
-    .required(),
+  phone: yup.string().min(10).max(13).required(),
   address: yup.string().required(),
 });
 
@@ -43,7 +38,6 @@ export default function LoginForm() {
       phone: "",
       address: "",
     },
-    validationSchema,
   });
 
   const onSubmit = (values) => {
@@ -51,12 +45,11 @@ export default function LoginForm() {
     toast.success(`We've got you order! Wait for our call!`);
   };
 
-  
   return (
     <Box>
       <Formik
         initialValues={formik.initialValues}
-        validationSchema={formik.validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         <Form>
@@ -91,7 +84,7 @@ export default function LoginForm() {
                 disableunderline="true"
               />
               <ErrorMessage name="phone">
-                {(msg) => <Box sx={css.ErrorText}>*{msg}</Box>}
+                {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
               </ErrorMessage>
             </Box>
             <Box sx={{ position: "relative" }}>
@@ -102,7 +95,7 @@ export default function LoginForm() {
                 disableunderline="true"
               />
               <ErrorMessage name="address">
-                {(msg) => <Box sx={css.ErrorText}>*{msg}</Box>}
+                {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
               </ErrorMessage>
             </Box>
             <Button variant="contained" type="submit">
@@ -111,17 +104,17 @@ export default function LoginForm() {
           </Box>
         </Form>
       </Formik>
-        <ToastContainer
-            position="bottom-left"
-            autoClose={10000}
-            hideProgressBar={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={10000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Box>
   );
 }

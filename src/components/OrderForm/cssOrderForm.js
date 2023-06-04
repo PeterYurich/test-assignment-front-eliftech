@@ -4,7 +4,7 @@ export const css = {
     errorText: {
         position: 'absolute',
         top: '37px',
-        fontSize: '14px',
+        fontSize: '10px',
         left: '0',
         padding: '5px 20px',
         color: palette.warning.main,
@@ -14,6 +14,5 @@ export const css = {
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        // position: ,
     }
 }

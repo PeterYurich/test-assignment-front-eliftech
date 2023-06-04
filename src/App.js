@@ -5,9 +5,10 @@ import { LoaderBallTriangle, SharedLayout } from 'components';
 import { Container } from '@mui/material';
 import { palette } from 'uiSettings/muiSettings';
 
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage'))
 const CartPage = lazy(() => import('./pages/CartPage/CartPage'))
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
+const HistoryPage = lazy(() => import('./pages/HistoryPage/HistoryPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="shop" element={<ShopPage />} />
               <Route path="cart" element={<CartPage />} />
+              <Route path="history" element={<HistoryPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

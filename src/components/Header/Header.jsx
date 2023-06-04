@@ -33,6 +33,14 @@ export default function Header() {
         >
           Shopping Cart
         </Button>
+        <Button
+          variant="contained"
+          sx={css.navLink}
+          onClick={onClick}
+          name="history"
+        >
+          order history
+        </Button>
       </Box>
     </Container>
   );

@@ -6,6 +6,8 @@ import GoodsList from "./GoodsList/GoodsList";
 import Cart from "./Cart/Cart";
 import OrderForm from "./OrderForm/OrderForm"
 import TotalPrice from "./TotalPrice/TotalPrice";
+import HistoryList from "./HistoryList/HistoryList";
+import HistoryForm from "./HistoryForm/HistoryForm";
 
 export {
     LoaderInfinity,
@@ -17,5 +19,7 @@ export {
     Cart,
     OrderForm,
     TotalPrice,
+    HistoryForm,
+    HistoryList,
     
 }

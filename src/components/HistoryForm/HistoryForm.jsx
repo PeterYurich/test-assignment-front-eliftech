@@ -2,15 +2,12 @@ import * as yup from "yup";
 import { Box, Button } from "@mui/material";
 import { Formik, Form, ErrorMessage, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCart, selectIsLoadingCart } from "redux/cart/cartSelectors";
-import { css } from "./cssOrderForm";
-import { addOrder } from "redux/cart/cartOperations";
-import { StyledInput } from "./OrderForm.styled";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { css } from "../OrderForm/cssOrderForm";
+import { StyledInput } from "../OrderForm/OrderForm.styled";
+import { getOrdersHistory } from "redux/history/historyOperations";
+import { selectIsLoadingHistory } from "redux/history/historySelectors";
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required(),
   email: yup
     .string()
     .min(8)
@@ -22,27 +19,21 @@ const validationSchema = yup.object().shape({
     .email()
     .required(),
   phone: yup.string().min(10).max(13).required(),
-  address: yup.string().required(),
 });
 
-export default function LoginForm() {
+export default function HistoryForm() {
   const dispatch = useDispatch();
-  const cart = useSelector(selectCart);
-  const isLoading = useSelector(selectIsLoadingCart);
+  const isLoading = useSelector(selectIsLoadingHistory);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       phone: "",
-      address: "",
     },
   });
 
   const onSubmit = (values) => {
-    dispatch(addOrder({ ...values, order: cart }));
-    console.log('dispatch: ', dispatch);
-    toast.success(`We've got you order! Wait for our call!`);
+    dispatch(getOrdersHistory(values));
   };
 
   return (
@@ -54,17 +45,6 @@ export default function LoginForm() {
       >
         <Form>
           <Box sx={css.formBox}>
-            <Box sx={{ position: "relative" }}>
-              <StyledInput
-                type="name"
-                name="name"
-                placeholder={"Enter name"}
-                disableunderline="true"
-              />
-              <ErrorMessage name="name">
-                {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
-              </ErrorMessage>
-            </Box>
             <Box sx={{ position: "relative" }}>
               <StyledInput
                 type="email"
@@ -87,39 +67,17 @@ export default function LoginForm() {
                 {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
               </ErrorMessage>
             </Box>
-            <Box sx={{ position: "relative" }}>
-              <StyledInput
-                type="address"
-                name="address"
-                placeholder={"Enter your address"}
-                disableunderline="true"
-              />
-              <ErrorMessage name="address">
-                {(msg) => <Box sx={css.errorText}>*{msg}</Box>}
-              </ErrorMessage>
-            </Box>
             <Button
               variant="contained"
               type="submit"
               sx={{ maxWidth: 210 }}
               disabled={isLoading && true}
             >
-              {!isLoading ? "order" : "loading..."}
+              {!isLoading ? "watch my orders" : "loading..."}
             </Button>
           </Box>
         </Form>
       </Formik>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={10000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { saveOrder } from 'api/orderApi';
+import { saveOrder } from 'api/ordersApi';
 
 
 export const addOrder = createAsyncThunk("cart/addGood",

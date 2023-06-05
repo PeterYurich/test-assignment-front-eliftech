@@ -12,10 +12,13 @@ import {
   countGoodTotalPrice,
   countOrderTotalPrice,
 } from "utils/countTotalPrice";
+import { parseDate } from "utils/parseDate";
 
 export default function HistoryList() {
   const orderHistory = useSelector(selectHistory);
+  console.log("orderHistory: ", orderHistory);
   const isLoading = useSelector(selectIsLoadingHistory);
+
 
   return (
     <Box>
@@ -26,14 +29,14 @@ export default function HistoryList() {
           {orderHistory.length > 0 && (
             <List>
               {orderHistory.map((item) => (
-                <ListItem>
-                  <Card sx={css.historyCard} key={item._id}>
+                <ListItem key={item._id}>
+                  <Card sx={css.historyCard}>
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
-                      <Typography
-                        sx={{ textTransform: "capitalize" }}
-                        variant="h5"
-                      >
-                        {`order price: ${separateThousands(
+                      <Typography variant="h5">
+                        {`Date: ${parseDate(item.createdAt)}`}
+                      </Typography>
+                      <Typography variant="h5">
+                        {`Order price: ${separateThousands(
                           countOrderTotalPrice(item.order)
                         )} coins`}
                       </Typography>
@@ -42,7 +45,10 @@ export default function HistoryList() {
                         <Box sx={css.tableColumn}>
                           <Typography variant="h6">Good:</Typography>
                           {item.order.map((good) => (
-                            <Typography sx={{ textTransform: "capitalize" }}>
+                            <Typography
+                              sx={{ textTransform: "capitalize" }}
+                              key={good._id}
+                            >
                               {good.productName}
                             </Typography>
                           ))}
@@ -51,7 +57,7 @@ export default function HistoryList() {
                         <Box sx={css.tableColumn}>
                           <Typography variant="h6">Price:</Typography>
                           {item.order.map((good) => (
-                            <Typography>{`${separateThousands(
+                            <Typography key={good._id}>{`${separateThousands(
                               good.price
                             )}`}</Typography>
                           ))}
@@ -60,14 +66,16 @@ export default function HistoryList() {
                         <Box sx={css.tableColumn}>
                           <Typography variant="h6">Amount:</Typography>
                           {item.order.map((good) => (
-                            <Typography>{good.amount}</Typography>
+                            <Typography key={good._id}>
+                              {good.amount}
+                            </Typography>
                           ))}
                         </Box>
 
                         <Box sx={css.tableColumn}>
                           <Typography variant="h6">Total:</Typography>
                           {item.order.map((good) => (
-                            <Typography>{`${separateThousands(
+                            <Typography key={good._id}>{`${separateThousands(
                               countGoodTotalPrice(good)
                             )}`}</Typography>
                           ))}

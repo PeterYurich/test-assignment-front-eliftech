@@ -1,11 +1,9 @@
 import {
   Box,
   Card,
-  CardContent,
   List,
   ListItem,
   Typography,
-  capitalize,
 } from "@mui/material";
 import { LoaderBallTriangle } from "components";
 import React from "react";

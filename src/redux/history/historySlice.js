@@ -23,6 +23,7 @@ export const historySlice = createSlice({
             })
             .addCase(getOrdersHistory.rejected, (state, { payload }) => {
                 state.isLoading = false;
+                state.items = []
                 state.error = payload;
             })
     },

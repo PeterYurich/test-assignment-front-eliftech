@@ -96,28 +96,6 @@ export const ThemeOptions = {
                 },
             ],
         },
-        MuiContainer: {
-            styleOverrides: {
-                root:
-                {
-                    backgroundColor: palette.background.default,
-                    // paddingTop: 60,
-                    // width: "100vw"
-                },
-            }
-        }
-        // {
-        //     variants: [
-        //         {
-        //             props: { component: 'main' },
-        //             style: {
-        //                 backgroundColor: 'red',
-        //                 marginTop: 6
-        //                 },
-
-        //         },
-        //     ],
-        // },
     },
     breakpoints: {
         values: {
@@ -126,7 +104,6 @@ export const ThemeOptions = {
             md: 767.98,
             lg: 1279.98,
             xl: 1535.98,
-            modal: 608,
         },
     },
 };

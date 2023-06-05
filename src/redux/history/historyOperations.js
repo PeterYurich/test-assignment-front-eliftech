@@ -8,6 +8,7 @@ export const getOrdersHistory = createAsyncThunk("orders/getHistory",
             const response = await fetchOrders(credential)
             return response
         } catch (error) {
+            alert("Check your email please!");
             return rejectWithValue(error.message)
         }
     })

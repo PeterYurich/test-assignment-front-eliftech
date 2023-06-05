@@ -1,10 +1,4 @@
-import {
-  Box,
-  Card,
-  List,
-  ListItem,
-  Typography,
-} from "@mui/material";
+import { Box, Card, List, ListItem, Typography } from "@mui/material";
 import { LoaderBallTriangle } from "components";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -45,7 +39,7 @@ export default function HistoryList() {
                       </Typography>
 
                       <Box className="rowFlex" sx={{ gap: 0 }}>
-                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                        <Box sx={css.tableColumn}>
                           <Typography variant="h6">Good:</Typography>
                           {item.order.map((good) => (
                             <Typography sx={{ textTransform: "capitalize" }}>
@@ -54,7 +48,7 @@ export default function HistoryList() {
                           ))}
                         </Box>
 
-                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                        <Box sx={css.tableColumn}>
                           <Typography variant="h6">Price:</Typography>
                           {item.order.map((good) => (
                             <Typography>{`${separateThousands(
@@ -63,14 +57,14 @@ export default function HistoryList() {
                           ))}
                         </Box>
 
-                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                        <Box sx={css.tableColumn}>
                           <Typography variant="h6">Amount:</Typography>
                           {item.order.map((good) => (
                             <Typography>{good.amount}</Typography>
                           ))}
                         </Box>
 
-                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                        <Box sx={css.tableColumn}>
                           <Typography variant="h6">Total:</Typography>
                           {item.order.map((good) => (
                             <Typography>{`${separateThousands(

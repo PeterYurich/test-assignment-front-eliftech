@@ -12,7 +12,7 @@ export default function Header() {
   };
 
   return (
-    <Container sx={css.navContainer}>
+    <Container sx={css.mainBox}>
       <Typography sx={css.slogan} variant="h6">
         We will, we will feed you!
       </Typography>

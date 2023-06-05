@@ -35,3 +35,8 @@ code {
   gap: 20px;
   align-items: center;
 }
+
+.active {
+  border: "5px solid black";
+  color: red;
+}

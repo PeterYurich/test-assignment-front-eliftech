@@ -12,6 +12,7 @@ export const css = {
         backgroundColor: palette.background.paper,
         flexWrap: 'wrap',
         borderBottom: `2px solid ${palette.primary.light}`,
+        color: 'inherit',
     },
 
     slogan: {

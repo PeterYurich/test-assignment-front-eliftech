@@ -1,10 +1,13 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import { css } from "./cssHeader";
+import { useTheme } from "@emotion/react";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const {palette} = useTheme()
 
   const onClick = (e) => {
     const { name } = e.target;
@@ -17,25 +20,29 @@ export default function Header() {
         We will, we will feed you!
       </Typography>
       <Box>
-        <Button
-          variant="contained"
-          sx={css.navLink}
+          <Button variant="contained" 
+          sx={{...css.navLink, 
+          backgroundColor: pathname === "/shop" && palette.primary.main
+          }} name="shop"
           onClick={onClick}
-          name="shop"
-        >
-          Shop
-        </Button>
+          >
+            Shop
+          </Button>
+          <Button
+            variant="contained"
+            sx={{...css.navLink, 
+              backgroundColor: pathname === "/cart" && palette.primary.main
+              }}
+            onClick={onClick}
+            name="cart"
+          >
+            Shopping Cart
+          </Button>
         <Button
           variant="contained"
-          sx={css.navLink}
-          onClick={onClick}
-          name="cart"
-        >
-          Shopping Cart
-        </Button>
-        <Button
-          variant="contained"
-          sx={css.navLink}
+          sx={{...css.navLink, 
+            backgroundColor: pathname === "/history" && palette.primary.main
+            }}
           onClick={onClick}
           name="history"
         >

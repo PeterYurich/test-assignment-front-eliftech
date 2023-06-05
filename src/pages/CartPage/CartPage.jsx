@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import { Cart, OrderForm, TotalPrice } from "components";
+import { Cart, OrderForm, ScrollUpBtn, TotalPrice } from "components";
 import React from "react";
 import { css } from "pages/CartPage/cssCartPage";
 import { useSelector } from "react-redux";
@@ -15,6 +15,7 @@ export default function CartPage() {
         {cart.length > 0 && <TotalPrice></TotalPrice>}
       </Box>
       <Cart></Cart>
+      <ScrollUpBtn />
     </Container>
   );
 }

@@ -11,7 +11,8 @@ export const css = {
         pb: 2,
         flexWrap: 'wrap',
     },
+
     slogan: {
         color: palette.primary.main
-    }
+    },
 }

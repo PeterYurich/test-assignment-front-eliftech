@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { GoodsList, ShopsList } from "components";
+import { GoodsList, ScrollUpBtn, ShopsList } from "components";
 import React from "react";
 import { css } from "./cssShopPage";
 
@@ -10,6 +10,7 @@ export default function ShopPage() {
         <ShopsList />
         <GoodsList />
       </Container>
+      <ScrollUpBtn />
     </Container>
   );
 }

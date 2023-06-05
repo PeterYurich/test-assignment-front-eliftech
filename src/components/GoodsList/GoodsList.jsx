@@ -69,17 +69,15 @@ export default function GoodsList() {
           pb: 6,
         }}
       >
-        {goodsList.length === 0 && (
-          <Box sx={css.flexCenter}>
-            <Typography>Choose a shop to deliver from!</Typography>
-          </Box>
-        )}
         {isLoading ? (
           <Box sx={css.flexCenter}>
             <LoaderBallTriangle />
           </Box>
+        ) : goodsList.length < 1 ? (
+          <Box sx={css.flexCenter}>
+            <Typography>Choose a shop to deliver from!</Typography>
+          </Box>
         ) : (
-          goodsList.length > 0 &&
           goodsList.map((good) => (
             <Grid
               component="li"

@@ -1,9 +1,6 @@
-import 'commonStyles.css'
 import { Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { LoaderBallTriangle, SharedLayout } from 'components';
-import { Container } from '@mui/material';
-import { palette } from 'uiSettings/muiSettings';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage'))
@@ -15,7 +12,6 @@ function App() {
   return (
     <div>
       <Suspense fallback={<LoaderBallTriangle />}>
-        <Container sx={{backgroundColor: palette.background.default, height: "100vh"}}>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<HomePage />} />
@@ -25,7 +21,6 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
-        </Container>
       </Suspense>
     </div>
   );

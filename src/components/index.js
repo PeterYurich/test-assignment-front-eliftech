@@ -8,6 +8,7 @@ import OrderForm from "./OrderForm/OrderForm"
 import TotalPrice from "./TotalPrice/TotalPrice";
 import HistoryList from "./HistoryList/HistoryList";
 import HistoryForm from "./HistoryForm/HistoryForm";
+import ScrollUpBtn from "./ScrollUpBtn/ScrollUpBtn";
 
 export {
     LoaderInfinity,
@@ -21,5 +22,6 @@ export {
     TotalPrice,
     HistoryForm,
     HistoryList,
+    ScrollUpBtn,
     
 }

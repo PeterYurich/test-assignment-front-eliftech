@@ -9,8 +9,8 @@ export const palette = {
         contrastText: '#000000',
     },
     background: {
-        default: '#f2fbff',
-        paper: '#f2fbff',
+        default: '#f5fcff',
+        paper: '#fafeff',
     },
     warning: {
         main: '#ff1800',
@@ -96,6 +96,28 @@ export const ThemeOptions = {
                 },
             ],
         },
+        MuiContainer: {
+            styleOverrides: {
+                root:
+                {
+                    backgroundColor: palette.background.default,
+                    // paddingTop: 60,
+                    // width: "100vw"
+                },
+            }
+        }
+        // {
+        //     variants: [
+        //         {
+        //             props: { component: 'main' },
+        //             style: {
+        //                 backgroundColor: 'red',
+        //                 marginTop: 6
+        //                 },
+
+        //         },
+        //     ],
+        // },
     },
     breakpoints: {
         values: {

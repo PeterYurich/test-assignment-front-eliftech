@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   Typography,
+  capitalize,
 } from "@mui/material";
 import { LoaderBallTriangle } from "components";
 import React from "react";
@@ -13,8 +14,12 @@ import {
   selectIsLoadingHistory,
   selectHistory,
 } from "redux/history/historySelectors";
-import { css } from "pages/HistoryPage/cssHistoryPage";
+import { css } from "./cssHistoryList";
 import separateThousands from "utils/separateThousands";
+import {
+  countGoodTotalPrice,
+  countOrderTotalPrice,
+} from "utils/countTotalPrice";
 
 export default function HistoryList() {
   const orderHistory = useSelector(selectHistory);
@@ -26,38 +31,62 @@ export default function HistoryList() {
         <LoaderBallTriangle></LoaderBallTriangle>
       ) : (
         <div>
-          {orderHistory.length > 0 &&
+          {orderHistory.length > 0 && (
             <List>
-              {orderHistory.map((order) => (
-                <ListItem> 
-                  {order._id}
-                {/* <Card sx={css.historyCard} key={order._id}>
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <CardContent sx={{ flex: "1 0 auto" }}>
+              {orderHistory.map((item) => (
+                <ListItem>
+                  <Card sx={css.historyCard} key={item._id}>
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
                       <Typography
                         sx={{ textTransform: "capitalize" }}
                         variant="h5"
                       >
-                        {`Data: ${order.createdAt}`}
+                        {`order price: ${separateThousands(
+                          countOrderTotalPrice(item.order)
+                        )} coins`}
                       </Typography>
-                      <Typography variant="subtitle1" color="text.secondary">
-                        {`${separateThousands(order.price)} coins`}
-                      </Typography>
-                    </CardContent>
-                    <Box
-                      sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-                    >
-                      Amount
-                      {order.order.map((good) => (
-                        <Typography>{good.amount}</Typography>
-                      ))}
+
+                      <Box className="rowFlex" sx={{ gap: 0 }}>
+                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                          <Typography variant="h6">Good:</Typography>
+                          {item.order.map((good) => (
+                            <Typography sx={{ textTransform: "capitalize" }}>
+                              {good.productName}
+                            </Typography>
+                          ))}
+                        </Box>
+
+                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                          <Typography variant="h6">Price:</Typography>
+                          {item.order.map((good) => (
+                            <Typography>{`${separateThousands(
+                              good.price
+                            )}`}</Typography>
+                          ))}
+                        </Box>
+
+                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                          <Typography variant="h6">Amount:</Typography>
+                          {item.order.map((good) => (
+                            <Typography>{good.amount}</Typography>
+                          ))}
+                        </Box>
+
+                        <Box className="columnFlex" sx={{ gap: 0, p: 1 }}>
+                          <Typography variant="h6">Total:</Typography>
+                          {item.order.map((good) => (
+                            <Typography>{`${separateThousands(
+                              countGoodTotalPrice(good)
+                            )}`}</Typography>
+                          ))}
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                </Card> */}
+                  </Card>
                 </ListItem>
               ))}
             </List>
-            }
+          )}
         </div>
       )}
     </Box>

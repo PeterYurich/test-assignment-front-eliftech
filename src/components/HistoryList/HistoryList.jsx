@@ -25,36 +25,40 @@ export default function HistoryList() {
       {isLoading ? (
         <LoaderBallTriangle></LoaderBallTriangle>
       ) : (
-        <List>
+        <div>
           {orderHistory.length > 0 &&
-            orderHistory.map((order) => (
-              <Card sx={css.historyCard} key={order._id}>
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
-                  <CardContent sx={{ flex: "1 0 auto" }}>
-                    <Typography
-                      sx={{ textTransform: "capitalize" }}
-                      variant="h5"
+            <List>
+              {orderHistory.map((order) => (
+                <ListItem> 
+                  {order._id}
+                {/* <Card sx={css.historyCard} key={order._id}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography
+                        sx={{ textTransform: "capitalize" }}
+                        variant="h5"
+                      >
+                        {`Data: ${order.createdAt}`}
+                      </Typography>
+                      <Typography variant="subtitle1" color="text.secondary">
+                        {`${separateThousands(order.price)} coins`}
+                      </Typography>
+                    </CardContent>
+                    <Box
+                      sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
                     >
-                      {`Data: ${order.createdAt}`}
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary">
-                      {`${separateThousands(order.price)} coins`}
-                    </Typography>
-                  </CardContent>
-
-                  <Box
-                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-                  >
-                    Amount
-                    {order.order.map((good) => (
-                      <Typography>{good.amount}</Typography>
-                    ))}
+                      Amount
+                      {order.order.map((good) => (
+                        <Typography>{good.amount}</Typography>
+                      ))}
+                    </Box>
                   </Box>
-
-                </Box>
-              </Card>
-            ))}
-        </List>
+                </Card> */}
+                </ListItem>
+              ))}
+            </List>
+            }
+        </div>
       )}
     </Box>
   );

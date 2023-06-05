@@ -6,7 +6,7 @@ export const css = {
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'baseline',
-        marginRight: 4,
+        pr: 4,
         pt: 2,
         pb: 2,
         backgroundColor: palette.background.paper,

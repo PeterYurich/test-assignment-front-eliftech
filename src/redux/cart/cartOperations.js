@@ -11,7 +11,7 @@ export const addOrder = createAsyncThunk("cart/addGood",
 
             return response
         } catch (error) {
-            toast.error(`Something is wrong. Check your internet connection`)
+            toast.error(`Something has gone wrong. Check your internet connection.`)
             return rejectWithValue(error.message)
         }
     });

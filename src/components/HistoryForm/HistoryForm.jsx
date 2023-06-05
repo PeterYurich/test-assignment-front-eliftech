@@ -6,6 +6,9 @@ import { css } from "../OrderForm/cssOrderForm";
 import { StyledInput } from "../OrderForm/OrderForm.styled";
 import { getOrdersHistory } from "redux/history/historyOperations";
 import { selectIsLoadingHistory } from "redux/history/historySelectors";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -78,6 +81,17 @@ export default function HistoryForm() {
           </Box>
         </Form>
       </Formik>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={10000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Box>
   );
 }

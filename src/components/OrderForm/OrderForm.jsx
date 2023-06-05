@@ -41,7 +41,6 @@ export default function LoginForm() {
 
   const onSubmit = (values) => {
     dispatch(addOrder({ ...values, order: cart }));
-    console.log('dispatch: ', dispatch);
     toast.success(`We've got you order! Wait for our call!`);
   };
 

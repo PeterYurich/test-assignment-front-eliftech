@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCart } from "redux/cart/cartSelectors";
 import separateThousands from "utils/separateThousands";
+import { countOrderTotalPrice } from "utils/countTotalPrice";
 
 export default function TotalPrice() {
   const [totalPrice, setTotalPrice] = useState();
@@ -11,9 +12,7 @@ export default function TotalPrice() {
   useEffect(() => {
     if (cart.length > 0) {
 
-    const sum = cart.reduce((total, good) => {
-        return total + good.price;
-      }, 0);
+    const sum = countOrderTotalPrice(cart)
       setTotalPrice(sum);
     }
   }, [cart]);

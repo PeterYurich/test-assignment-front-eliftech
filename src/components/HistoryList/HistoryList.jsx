@@ -30,17 +30,20 @@ export default function HistoryList() {
               {orderHistory.map((item) => (
                 <ListItem key={item._id}>
                   <Card sx={css.historyCard}>
-                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                      <Typography variant="h5">
-                        {`Date: ${parseDate(item.createdAt)}`}
-                      </Typography>
-                      <Typography variant="h5">
-                        {`Order price: ${separateThousands(
-                          countOrderTotalPrice(item.order)
-                        )} coins`}
-                      </Typography>
 
-                      <Box className="rowFlex" sx={{ gap: 0 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2}}>
+                      <Box sx={{ display: "block"}}>
+                        <Typography variant="h5">
+                          {`Date: ${parseDate(item.createdAt)}`}
+                        </Typography>
+                        <Typography variant="h5" sx={{mb: 0}}>
+                          {`Order price: ${separateThousands(
+                            countOrderTotalPrice(item.order)
+                          )} coins`}
+                        </Typography>
+                      </Box>
+
+                      <Box className="rowFlex" sx={{ gap: 0, flexWrap: "nowrap" }}>
                         <Box sx={css.tableColumn}>
                           <Typography variant="h6">Good:</Typography>
                           {item.order.map((good) => (

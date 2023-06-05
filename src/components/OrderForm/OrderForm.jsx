@@ -6,7 +6,7 @@ import { selectCart, selectIsLoadingCart } from "redux/cart/cartSelectors";
 import { css } from "./cssOrderForm";
 import { addOrder } from "redux/cart/cartOperations";
 import { StyledInput } from "./OrderForm.styled";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = yup.object().shape({
@@ -40,8 +40,8 @@ export default function LoginForm() {
   });
 
   const onSubmit = (values) => {
-    dispatch(addOrder({ ...values, order: cart }));
-    toast.success(`We've got you order! Wait for our call!`);
+    dispatch(addOrder({ ...values, order: cart }))
+    
   };
 
   return (

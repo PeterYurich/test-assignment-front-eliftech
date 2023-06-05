@@ -16,7 +16,6 @@ import { parseDate } from "utils/parseDate";
 
 export default function HistoryList() {
   const orderHistory = useSelector(selectHistory);
-  console.log("orderHistory: ", orderHistory);
   const isLoading = useSelector(selectIsLoadingHistory);
 
 
